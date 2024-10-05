@@ -19,7 +19,7 @@ export default function MultiStepForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const correctPassword = "8228";
 
   const [errors, setErrors] = useState<{
@@ -258,7 +258,6 @@ export default function MultiStepForm() {
 
               <div className="grid place-content-center">
                 <Button
-                  type="button"
                   className="w-[10rem] bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                   onClick={handleNextStep}
                 >
@@ -307,7 +306,6 @@ export default function MultiStepForm() {
 
               <div className="grid place-content-center">
                 <Button
-                  type="button"
                   className="w-[15rem]  bg-blue-600 hover:bg-blue-700 text-white rounded-full"
                   onClick={handleNextStep}
                 >
