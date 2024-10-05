@@ -11,8 +11,7 @@ import React from "react";
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] =
-    useState<boolean>(false);
+  const [showConfirmPassword]=useState<boolean>(false);
   const [code, setCode] = useState<string[]>(["", "", "", ""]);
   const [timer, setTimer] = useState(20);
   const [isResendDisabled, setIsResendDisabled] = useState<boolean>(true);
@@ -317,7 +316,6 @@ export default function MultiStepForm() {
               </div>
             </form>
           )}
-        {/* </div> */}
       </div>
       }
       {currentStep === 3 && (

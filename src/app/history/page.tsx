@@ -1,4 +1,4 @@
-import { Search, Bell, Briefcase, Clock, User } from "lucide-react"
+import { Search, Bell, Briefcase, Clock, User } from "lucide-react";
 import Input from "../../components/ui/input"; 
 import { Button } from "../../components/ui/button";
 
@@ -11,15 +11,15 @@ export default function Component() {
           <h1 className="text-2xl font-bold text-blue-600">VerifAI</h1>
         </div>
         <nav className="mt-6">
-          <Button variant="ghost" className="w-full justify-start px-4 py-2 text-left">
+          <Button className="w-full justify-start px-4 py-2 text-left">
             <Briefcase className="mr-3 h-5 w-5" />
             Jobs
           </Button>
-          <Button variant="ghost" className="w-full justify-start px-4 py-2 text-left">
+          <Button className="w-full justify-start px-4 py-2 text-left">
             <Clock className="mr-3 h-5 w-5" />
             History
           </Button>
-          <Button variant="ghost" className="w-full justify-start px-4 py-2 text-left">
+          <Button className="w-full justify-start px-4 py-2 text-left">
             <User className="mr-3 h-5 w-5" />
             Profile
           </Button>
@@ -40,7 +40,7 @@ export default function Component() {
                 />
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               </div>
-              <Button variant="ghost" size="icon" className="ml-2">
+              <Button className="ml-2">
                 <Bell className="h-5 w-5" />
               </Button>
             </div>
