@@ -122,7 +122,7 @@ export default function MultiStepForm() {
 
   return (
     <>
-      <div className="grid grid-col  bg-gradient-to-b from-[#015DE7] to-[#061388] h-screen place-content-center">
+      <div className="grid grid-col  bg-gradient-to-b from-[#015DE7] to-[#061388] h-screen place-content-center overflow-hidden">
           <Link href="#">
           <Image
             className="h-[2rem] w-auto md:h-[2rem] md:w-auto md:mt-[-6rem]  lg:h-[2rem] lg:w-auto lg:mt[-6rem] lg:ml-[-30rem] mt-[-5rem]"
