@@ -1,60 +1,79 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Login from '@/app/login/page';
 
 const Page = () => {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [showNextPage, setShowNextPage] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsAnimating(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (isAnimating) {
+      const timer = setTimeout(() => {
+        setShowNextPage(true);
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isAnimating]);
+
+  const NextPageContent = () => (
+    <Login/>
+  );
+
   return (
     <>
-      <div className="grid place-content-center h-screen bg-gradient-to-b from-[#015DE7] to-[#061388] gap-5 p-4 md:p-0">
-        <div className="grid place-content-center">
-          <h1 className="text-white text-3xl sm:text-4xl font-bold text-center">
-            Welcome to
-          </h1>
-        </div>
+      {!showNextPage ? (
+        <div className="grid place-content-center h-screen bg-gradient-to-b from-[#015DE7] to-[#061388] gap-5 p-4 md:p-0">
+          <div className="grid place-content-center gap-[10rem]">
+            <div className="grid gap-9">
+              <h1 className="text-white text-3xl sm:text-4xl font-normal text-center">
+                Welcome to
+              </h1>
 
-        <div className="grid place-content-center">
-          <Image
-            src="/images/Verif@3x.svg"
-            alt="Verif ai image"
-            width={457}
-            height={156}
-            className="w-[70%] sm:w-[60%] md:w-[457px] mx-auto ml-[0rem]"
-          />
-          <Image
-            className="mt-[-3rem] sm:mt-[-18rem]  md:mt-[-10rem] lg:mt-[-14rem] w-[80%] sm:w-[70%] md:w-[80%] lg:w-auto mx-auto"
-            src="/images/img1.svg"
-            alt="Verif ai image"
-            width={794}
-            height={277}
-          />
-        </div>
+              <div className="grid place-content-center relative">
+              <div
+                  className={`transition-transform duration-1000 ${
+                    isAnimating
+                      ? "scale-50 translate-x-[16rem] translate-y-[-16rem] absolute top-0 right-0"
+                      : "scale-100 translate-x-0 translate-y-0"
+                  }`}
+                >
+                  <Image
+                    src="/images/Verif@3x.svg"
+                    alt="Verif AI image"
+                    width={457}
+                    height={156}
+                    className="w-[321px] h-[120.66px]"
+                  />
+                <Image
+                  className="w-[30rem] mt-[-8rem] ml-[2rem]"
+                  src="/images/img1.svg"
+                  alt="Verif AI image"
+                  width={794}
+                  height={277}
+                />
+                </div>
+              </div>
+            </div>
 
-        {/* Description paragraph */}
-        <p className="text-center font-semibold text-xl sm:text-2xl text-white mt-5">
-          Streamlined verification for all your <br /> important documents.
-        </p>
-
-        {/* Buttons section */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center items-center mt-8">
-          <div className="w-full sm:w-[250px] md:w-[300px] h-[70px] sm:h-[80px] bg-white rounded-full grid place-content-center shadow-lg">
-            <Link href="/signup-form-demo">
-              <button className="text-[16px] sm:text-[18px] font-semibold text-[#015DE7]">
-                Register
-              </button>
-            </Link>
-          </div>
-
-          <div className="w-full sm:w-[250px] md:w-[300px] h-[70px] sm:h-[80px] bg-[#051A92] rounded-full grid place-content-center shadow-lg">
-            <Link href="/login">
-              <button className="text-[16px] sm:text-[18px] font-semibold text-white">
-                Log In
-              </button>
-            </Link>
+            <p className="text-center font-semibold text-xl sm:text-2xl text-white mt-5">
+              Streamlined verification for all your important documents.
+            </p>
           </div>
         </div>
-      </div>
+      ) : (
+        <NextPageContent />
+      )}
     </>
   );
 };

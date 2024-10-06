@@ -11,7 +11,7 @@ import React from "react";
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword]=useState<boolean>(false);
+  const [showConfirmPassword , setShowConfirmPassword]=useState<boolean>(false);
   const [code, setCode] = useState<string[]>(["", "", "", ""]);
   const [timer, setTimer] = useState(20);
   const [isResendDisabled, setIsResendDisabled] = useState<boolean>(true);
@@ -80,6 +80,7 @@ export default function MultiStepForm() {
       }
     }
   };
+  
 
   useEffect(() => {
     if (timer > 0) {
@@ -122,10 +123,9 @@ export default function MultiStepForm() {
   return (
     <>
       <div className="grid grid-col  bg-gradient-to-b from-[#015DE7] to-[#061388] h-screen place-content-center">
-        {/* <div className="grid place-content-start"> */}
           <Link href="#">
           <Image
-            className="w-3/4 sm:w-2/3 md:w-2/3 lg:w-auto lg:h-[2rem] ml-[-30rem] mt-[-6rem]"
+            className="h-[2rem] w-auto md:h-[2rem] md:w-auto md:mt-[-6rem]  lg:h-[2rem] lg:w-auto lg:mt[-6rem] lg:ml-[-30rem] mt-[-5rem]"
             src="/images/Vector@.svg"
             alt="Arrow image"
             width={794}
@@ -133,10 +133,11 @@ export default function MultiStepForm() {
             onClick={goToPreviousStep}
           />
           </Link>
-        {/* </div> */}
+          {currentStep===1}{
+            <p className="text-white text-xl text-center font-bold mt-[-3rem] ">Say goodbye to manual checks, hello to automation!</p>
+          }
         {currentStep <3 &&
-        // <div className="flex justify-center items-center min-h-screen  px-4">
-        <div className="bg-white grid place-content-center h-screen p-6 rounded-xl shadow-md w-full max-w-md sm:max-w-lg lg:w-[28rem] lg:max-h-[28.5rem]">
+        <div className="bg-white grid place-content-center p-6 rounded-xl shadow-md w-full md:w-[30rem] h-auto min-h-[25rem] md:min-h-[30rem] lg:min-h-[29rem] overflow-y-auto">
           {currentStep < 4 && (
             <> 
               <div className="grid place-content-center gap-2 ">
@@ -158,10 +159,11 @@ export default function MultiStepForm() {
               </div>
             </>
           )}
+          
+          
 
           {currentStep === 1 &&(
-            <form className="space-y-6">
-              {/* Email Input */}
+            <form className="space-y-6 ">
               <div className="relative">
                 <Input
                   id="email"
@@ -206,6 +208,7 @@ export default function MultiStepForm() {
                   type="button"
                   className="absolute inset-y-0 right-0 pr-3 flex items-center"
                   onClick={() => setShowPassword(!showPassword)}
+                  name="btn1"
                 >
                   {showPassword ? (
                     <EyeOffIcon className="h-5 w-5 text-gray-400" />
@@ -239,9 +242,10 @@ export default function MultiStepForm() {
                 <button
                   type="button"
                   className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  name="btn2"
                 >
-                  {showPassword ? (
+                  {showConfirmPassword ? (
                     <EyeOffIcon className="h-5 w-5 text-gray-400" />
                   ) : (
                     <EyeIcon className="h-5 w-5 text-gray-400" />
@@ -316,19 +320,20 @@ export default function MultiStepForm() {
           )}
       </div>
       }
+      
       {currentStep === 3 && (
             <>
-              <div className="grid place-content-center h-screen gap-10 text-white w-full h-[43.7rem] bg-gradient-to-b from-[#015DE7] to-[#061388]">
-                  <div className="grid place-content-center">
+              <div className="grid place-content-center  h-screen gap-10 text-white w-full h-[43.7rem] bg-gradient-to-b from-[#015DE7] to-[#061388]">
+                  <div className="grid place-content-center md:grid md:place-content-center lg:grid lg:place-content-center">
                   <Image
                     src="/images/Verif@3x.svg"
                     alt="Verif ai image"
                     width={457}
                     height={156}
-                    className="w-3/4 sm:w-1/2 md:w-[300px]"
+                    className="w-[200px] md:w-[300px]"
                   /> 
                   <Image
-                    className="mt-[-7rem] w-3/4 sm:w-2/3 lg:w-[450px] ml-6"
+                    className="mt-[-5rem] lg:mt-[-8rem] md:mt-[-8rem]  ml-[2rem] w-3/4 sm:w-2/3 lg:w-[450px] "
                     src="/images/img1.svg"
                     alt="Verif ai image"
                     width={794}
@@ -359,7 +364,13 @@ export default function MultiStepForm() {
                 </div>
             </>
           )}
+          
       </div>
+      {currentStep===1}{
+        <div className="grid place-content-center">
+          <p className="text-white text-xl text-center font-bold ml-[-1.5rem] mt-[-5rem] ">Smart solutions for a paperless future.</p>
+        </div>
+          }
     </>
   );
 }
