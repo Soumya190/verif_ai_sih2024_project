@@ -34,7 +34,6 @@ const Page = () => {
         <div className="grid place-content-center h-screen overflow-hidden bg-gradient-to-b from-[#015DE7] to-[#061388] gap-5 p-4 md:p-0">
           <div className="grid place-content-center gap-[5rem] md:gap-[10rem]">
             {" "}
-            {/* Reduced gap on mobile */}
             <div className="grid gap-9">
               <h1 className="text-white text-3xl sm:text-4xl font-normal text-center">
                 Welcome to

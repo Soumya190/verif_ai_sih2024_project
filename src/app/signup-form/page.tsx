@@ -61,26 +61,53 @@ export default function MultiStepForm() {
   };
 
   const validateCode = () => {
-    return code.every((digit) => digit !== "");
-  };
+  return code.every((digit) => digit !== "" && /^\d$/.test(digit));
+};
 
-  const handleNextStep = () => {
-    if (currentStep === 1 && validateForm()) {
-      setCurrentStep(2);
-      startTimer();
-    } else if (currentStep === 2) {
-      if (validateCode()) {
-        if (code.join("") === correctPassword) {
-          setCurrentStep(3);
-          setError(null);
+
+  const handleNextStep = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+) => {
+    e.preventDefault();
+
+    if (currentStep === 1) {
+        if (validateForm()) {
+            setCurrentStep(2);
+            startTimer();
         } else {
-          setError("Incorrect code. Please try again.");
+            return;
         }
-      } else {
-        alert("Please enter all digits of the code.");
+    } 
+
+    
+    else if (currentStep === 2) {
+  
+      const enteredCode = code.join('').trim();
+      const correctCode = correctPassword.trim();
+  
+      const isCodeNumeric = /^\d+$/.test(enteredCode);
+      if (!isCodeNumeric) {
+          alert("Please enter only digits for the code. No alphabets or symbols allowed.");
+          return;
       }
+
+      if (!validateCode()) {
+        alert("Please enter all digits of the code.");
+        return;
     }
-  };
+  
+      if (enteredCode !== correctCode) {
+          alert("Code is incorrect. Please try again.");
+          return;
+      }
+  
+      setError(null); 
+      setCurrentStep(3);
+  }
+  
+    
+  
+};
 
   useEffect(() => {
     if (timer > 0) {
@@ -164,7 +191,7 @@ export default function MultiStepForm() {
             )}
 
             {currentStep === 1 && (
-              <form className="space-y-6 p-0 m-0 max-w-full">
+              <div className="space-y-6 p-0 m-0 max-w-full">
                 <div className="relative">
                   <Input
                     id="email"
@@ -260,16 +287,17 @@ export default function MultiStepForm() {
                     Terms & Conditions
                   </Link>
                 </p>
-
+                
                 <div className="grid place-content-center">
-                  <Button
+                <Button
                     className="w-[10rem] bg-blue-600 hover:bg-blue-700 text-white rounded-full"
+                    type="submit"
                     onClick={handleNextStep}
                   >
                     Continue
                   </Button>
                 </div>
-              </form>
+              </div>
             )}
 
             {currentStep === 2 && (
@@ -324,7 +352,7 @@ export default function MultiStepForm() {
 
         {currentStep === 3 && (
           <>
-            <div className="grid place-content-center  h-screen gap-10 text-white w-full h-[43.7rem] bg-gradient-to-b from-[#015DE7] to-[#061388]">
+            <div className="grid place-content-center h-screen gap-10 text-white w-full h-[43.7rem] bg-gradient-to-b from-[#015DE7] to-[#061388]">
               <div className="grid place-content-center md:grid md:place-content-center lg:grid lg:place-content-center">
                 <Image
                   src="/images/Verif@3x.svg"

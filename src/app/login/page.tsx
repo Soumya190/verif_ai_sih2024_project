@@ -166,7 +166,7 @@ export default function Component() {
                 <div>
                   <p className="opacity-45">New to VerifAI?</p>
                 </div>
-                <Link href="/signup-form-demo">
+                <Link href="/signup-form">
                   <div>
                     <button className="text-blue-600">Register</button>
                   </div>
